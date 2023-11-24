@@ -9,11 +9,10 @@ resource "aws_instance" "demo-server" {
   //security_groups = [ "demo-sg" ]
   vpc_security_group_ids = [aws_security_group.demo-sg.id]
   subnet_id              = aws_subnet.dpp-public-subnet-01.id
-  for_each               = toset(["Jenkins-master", "build-slave", "ansible"])
+  for_each               = toset(["jenkins-master", "build-slave", "ansible"])
   tags = {
-    Name = "$(each.key)"
+    Name = "${each.key}"
   }
-
 }
 
 resource "aws_security_group" "demo-sg" {
@@ -22,9 +21,17 @@ resource "aws_security_group" "demo-sg" {
   vpc_id      = aws_vpc.dpp-vpc.id
 
   ingress {
-    description = "Shh access"
+    description = "SHH access"
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Jenkins port"
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
