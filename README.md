@@ -33,3 +33,18 @@ Test command to ensure AWS CLI is working. Obviously, we could use CloudShell to
 
 <img width="376" alt="Screenshot 2023-11-24 at 10 55 08 AM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/633e3332-8606-488f-b633-254ec91c4e1f">
 
+Now we create a basic terraform file for an EC2 instance
+
+<img width="481" alt="Screenshot 2023-11-24 at 2 49 03 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/1a5be9ad-a371-41f4-9fca-6e0a041b3457">
+
+Now we run `terraform init` `terraform validate` `terraform plan` and `terraform apply`. Which will start the EC2 instance:
+
+<img width="749" alt="Screenshot 2023-11-24 at 2 55 33 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/5794ff20-9c17-42bd-9254-03f8491bcc45">
+
+Note: previously I was able to use instance connect by default cause I had been using Amazon Linux 2 EC2 Instances. This time, I SSH-ed into the EC2 instance.
+
+Additionally, we need to alter the teraform file to allow a security group that will allow SSH:
+
+<img width="439" alt="Screenshot 2023-11-24 at 3 45 41 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/e61a3cb2-c7c0-4320-96c9-0b5bfe549a85">
+
+
