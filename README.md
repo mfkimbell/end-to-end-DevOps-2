@@ -1,4 +1,4 @@
-# end-to-end-DevOps-2
+# terraform-aws-DevOps-pipeline
 
 
 ### **Tools Used:**
@@ -134,6 +134,29 @@ I add port 8080 to the ingress of our terraform so we can access the Jenkins ser
 Now, we want to write an ansible playbook to install maven on our jenkins-slave, which will be executing tasks queued by the jenkins-master:
 
 <img width="762" alt="Screenshot 2023-11-24 at 9 42 52 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/e8f81334-7814-4027-9a35-cbecab35cb99">
+
+We want our Jenkins-master to be able to access the build server, so we add the .pem credentials:
+
+<img width="742" alt="Screenshot 2023-11-25 at 12 00 13 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/a6e1b8c2-23ba-405a-93b6-45499359fd80">
+
+Then we create the slave node:
+
+<img width="846" alt="Screenshot 2023-11-25 at 12 13 48 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/40e6eac1-12a9-45a6-82c9-b9f0d34ce6ea">
+
+I create a test job and successfully execute a test command:
+
+<img width="739" alt="Screenshot 2023-11-25 at 12 28 08 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/2c586048-5ed8-440c-995b-5e9b3e51bf28">
+
+Now we create a new job to run the local application. We create a test pipeline script:
+
+<img width="921" alt="Screenshot 2023-11-25 at 1 02 04 PM" src="https://github.com/mfkimbell/Terraform-AWS-CICD-Pipeline/assets/107063397/fdd5d6f5-c66d-4afa-9a5b-020ae77022ff">
+
+Which runs successfully:
+
+<img width="969" alt="Screenshot 2023-11-25 at 1 04 10 PM" src="https://github.com/mfkimbell/Terraform-AWS-CICD-Pipeline/assets/107063397/f2bd6d1d-d803-4efe-bd4b-45ac6a4c9feb">
+
+
+
 
 
 
