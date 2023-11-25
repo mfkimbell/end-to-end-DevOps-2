@@ -123,9 +123,19 @@ I also added the slave to the hosts file
 
 ![image](https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/c2dd8431-6d89-49bc-9bc3-617c0aff36e6)
 
-Now, we can add an ansible playbook to setup our Jenkins server:
+Now, we can add an ansible playbook to our Ansible server for setting up Jenkins:
 
 <img width="829" alt="Screenshot 2023-11-24 at 9 07 23 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/7fb434e7-a86b-4712-a0f6-f293411f9f55">
+
+I add port 8080 to the ingress of our terraform so we can access the Jenkins server via browser, and it sucessfully loads:
+
+<img width="531" alt="Screenshot 2023-11-24 at 9 40 10 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/5ff0dba0-156a-457b-95b9-1fb93a306b04">
+
+Now, we want to write an ansible playbook to install maven on our jenkins-slave, which will be executing tasks queued by the jenkins-master:
+
+<img width="762" alt="Screenshot 2023-11-24 at 9 42 52 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/e8f81334-7814-4027-9a35-cbecab35cb99">
+
+
 
 
 
