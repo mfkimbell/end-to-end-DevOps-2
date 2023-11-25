@@ -4,12 +4,23 @@ pipeline {
             label 'maven'
         }
     }
-
+environment {
+    PATH = "/opt/apache-maven-3.9.5/bin:$PATH"
+}
     stages {
-        stage('Clone-code') {
+        stage("build"){
             steps {
-                git branch: 'main', url: 'https://github.com/mfkimbell/terraform-aws-DevOps-pipeline.git'
+                 echo "----------- build started ----------"
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                 echo "----------- build complted ----------"
             }
         }
-    }
+        // stage("test"){
+        //     steps{
+        //         echo "----------- unit test started ----------"
+        //         sh 'mvn surefire-report:report'
+        //          echo "----------- unit test Complted ----------"
+        //     }
+        // }
+}
 }
