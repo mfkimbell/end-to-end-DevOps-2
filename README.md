@@ -186,6 +186,11 @@ I install the `Multibranch Scan Webhook Trigger` plugin on Jenkins. I then add a
 
 <img width="595" alt="Screenshot 2023-11-25 at 2 33 57 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/9b45faca-4305-4e6b-902e-ba239860c461">
 
+Now after a commit, we can see the webhook automatically triggers which will run the multibranch job and update the main branch, however, it will automatically make changes for whichever branch has changes made to it:
+
+<img width="621" alt="Screenshot 2023-11-25 at 2 38 29 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/47524eb0-ee96-4ac2-8bd8-9c876a8f777e">
+
+
 
 
 
