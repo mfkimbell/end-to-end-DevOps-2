@@ -43,6 +43,15 @@ Now we run `terraform init` `terraform validate` `terraform plan` and `terraform
 
 **Note: previously I was able to use instance connect by default cause I had been using Amazon Linux 2 EC2 Instances. This time, I had to SSH into the instance from my Bash terminal with a pem key as Amazon Linux 2 is becoming outdated soon**
 
+Amazon Linux
+```
+ssh -i <path to pem>.pem ec2-user@<public IP>
+```
+Ubuntu
+```
+ssh -i <path to pem>.pem ubuntu@<public IP>
+```
+
 Additionally, we need to alter the terraform file to create a security group that will allow SSH:
 
 <img width="439" alt="Screenshot 2023-11-24 at 3 45 41 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/e61a3cb2-c7c0-4320-96c9-0b5bfe549a85">
@@ -113,6 +122,19 @@ Now, ansible can successfully connect to the Jenkins-master
 I also added the slave to the hosts file 
 
 ![image](https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/c2dd8431-6d89-49bc-9bc3-617c0aff36e6)
+
+Now, we can add an ansible playbook to our Ansible server for setting up Jenkins:
+
+<img width="829" alt="Screenshot 2023-11-24 at 9 07 23 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/7fb434e7-a86b-4712-a0f6-f293411f9f55">
+
+I add port 8080 to the ingress of our terraform so we can access the Jenkins server via browser, and it sucessfully loads:
+
+<img width="531" alt="Screenshot 2023-11-24 at 9 40 10 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/5ff0dba0-156a-457b-95b9-1fb93a306b04">
+
+Now, we want to write an ansible playbook to install maven on our jenkins-slave, which will be executing tasks queued by the jenkins-master:
+
+<img width="762" alt="Screenshot 2023-11-24 at 9 42 52 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/e8f81334-7814-4027-9a35-cbecab35cb99">
+
 
 
 
