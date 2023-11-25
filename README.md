@@ -180,7 +180,13 @@ I created a multi-branch pipeline for the project and add a dev branch:
 <img width="900" alt="Screenshot 2023-11-25 at 2 18 59 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/cff0a8dc-b5ad-498e-80e6-ba2d53820c10">
 
 
-I install the `Multibranch Scan Webhook Trigger` plugin on Jenkins. 
+I install the `Multibranch Scan Webhook Trigger` plugin on Jenkins. I then add a webhook on github that triggers the multi-branch pipeline job.
+
+<img width="572" alt="Screenshot 2023-11-25 at 2 36 59 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/dc7ed472-fd15-46e3-9279-a17e19014291">
+
+<img width="595" alt="Screenshot 2023-11-25 at 2 33 57 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/9b45faca-4305-4e6b-902e-ba239860c461">
+
+
 
 
 
