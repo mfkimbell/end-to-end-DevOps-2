@@ -175,9 +175,9 @@ Then add my github repository to the Jenkins credentials, however, this is only 
 
 <img width="729" alt="Screenshot 2023-11-25 at 1 44 58 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/7f974930-46b8-484d-9751-1ed7f31ff0b7">
 
-I created a multi-branch pipeline for the project and add a dev branch:
+I created a multi-branch pipeline for the project and add a dev and stage branch:
 
-<img width="900" alt="Screenshot 2023-11-25 at 2 18 59 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/cff0a8dc-b5ad-498e-80e6-ba2d53820c10">
+<img width="600" alt="Screenshot 2023-11-25 at 2 53 04 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/f0b174af-3a2d-4cb6-9488-0dfbee00e3d7">
 
 
 I install the `Multibranch Scan Webhook Trigger` plugin on Jenkins. I then add a webhook on github that triggers the multi-branch pipeline job.
