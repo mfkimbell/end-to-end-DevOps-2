@@ -155,8 +155,27 @@ Which runs successfully:
 
 <img width="969" alt="Screenshot 2023-11-25 at 1 04 10 PM" src="https://github.com/mfkimbell/Terraform-AWS-CICD-Pipeline/assets/107063397/f2bd6d1d-d803-4efe-bd4b-45ac6a4c9feb">
 
+Now, we change the code to a Jenkinsfile on the local repository and connect it via SCM:
 
+<img width="551" alt="Screenshot 2023-11-25 at 1 25 39 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/8a27caee-9133-48aa-bf89-6f045db757f0">
 
+I then update the Jenkins file to build with maven:
+
+```
+stage("build"){
+            steps {
+                 echo "----------- build started ----------"
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                 echo "----------- build complted ----------"
+            }
+        }
+```
+
+Then add my github repository to the Jenkins credentials, however, this is only necessary if I make my repository private:
+
+<img width="729" alt="Screenshot 2023-11-25 at 1 44 58 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/7f974930-46b8-484d-9751-1ed7f31ff0b7">
+
+Multibranch pipeline
 
 
 
