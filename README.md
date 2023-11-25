@@ -43,6 +43,15 @@ Now we run `terraform init` `terraform validate` `terraform plan` and `terraform
 
 **Note: previously I was able to use instance connect by default cause I had been using Amazon Linux 2 EC2 Instances. This time, I had to SSH into the instance from my Bash terminal with a pem key as Amazon Linux 2 is becoming outdated soon**
 
+Amazon Linux
+```
+ssh -i <path to pem>.pem ec2-user@<public IP>
+```
+Ubuntu
+```
+ssh -i <path to pem>.pem ubuntu@<public IP>
+```
+
 Additionally, we need to alter the terraform file to create a security group that will allow SSH:
 
 <img width="439" alt="Screenshot 2023-11-24 at 3 45 41 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/e61a3cb2-c7c0-4320-96c9-0b5bfe549a85">
@@ -114,6 +123,9 @@ I also added the slave to the hosts file
 
 ![image](https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/c2dd8431-6d89-49bc-9bc3-617c0aff36e6)
 
+Now, we can add an ansible playbook to setup our Jenkins server:
+
+<img width="829" alt="Screenshot 2023-11-24 at 9 07 23 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/7fb434e7-a86b-4712-a0f6-f293411f9f55">
 
 
 
