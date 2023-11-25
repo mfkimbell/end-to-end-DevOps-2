@@ -41,7 +41,7 @@ Now we run `terraform init` `terraform validate` `terraform plan` and `terraform
 
 <img width="749" alt="Screenshot 2023-11-24 at 2 55 33 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/5794ff20-9c17-42bd-9254-03f8491bcc45">
 
-Note: previously I was able to use instance connect by default cause I had been using Amazon Linux 2 EC2 Instances. This time, I SSH-ed into the EC2 instance.
+**Note: previously I was able to use instance connect by default cause I had been using Amazon Linux 2 EC2 Instances. This time, I had to SSH into the instance from my Bash terminal with a pem key as Amazon Linux 2 is becoming outdated soon**
 
 Additionally, we need to alter the terraform file to create a security group that will allow SSH:
 
@@ -71,5 +71,29 @@ And we can see all these resources being formed:
 
 <img width="698" alt="Screenshot 2023-11-24 at 5 14 19 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/b60453be-8a91-4cd2-8e0a-67c5419aa084">
 
+I altered the EC2 instances to dynamically create for Jenkins master, slave, and ansible
+
+<img width="640" alt="Screenshot 2023-11-24 at 5 22 58 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/1bd75991-0a72-4450-96dc-a27201e27263">
+
+And here we can see those running
+
+<img width="749" alt="Screenshot 2023-11-24 at 5 31 36 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/7d807235-15a5-4aff-b8f4-c84a4ed39006">
+
+**Roadblock that took me a couple hours to debug**
+When you SSH into an **Ubuntu** instance, you need to set the user to "Ubuntu" not "ec2-user"
+
+run the following commands to install ansible on the ubuntu server
+```
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+```
+
+For Jenkins-master setup, I'm going to use the private IP since the public IP will change over time. These servers are in the same VPC so connection will be fine. 
+
+I create a "hosts" file in the ansible server that containers the jenkins master IP as well as some variables that will allow connection, a username of "ubuntu" and I'll use the dpp.pem file which i'll copy into the server.
+
+<img width="342" alt="Screenshot 2023-11-24 at 6 12 28 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/dd8aa30c-a91d-41d1-8030-f336b1e5da01">
 
 
