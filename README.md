@@ -96,4 +96,24 @@ I create a "hosts" file in the ansible server that containers the jenkins master
 
 <img width="342" alt="Screenshot 2023-11-24 at 6 12 28 PM" src="https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/dd8aa30c-a91d-41d1-8030-f336b1e5da01">
 
+**Roadblock**
+If you want ansible to have access to another EC2, it needs the keypair pem file. I normally program on mac and tried to use SCP command
+
+```
+scp -i dpp.pem dpp.pem ubuntu@<address>:/opt
+```
+to get it into my folder of interest, however, it would only do it for the base image and not for when I was logged in as root user. So as you can see, I switched to windows, downloaded MobaXTerm, and imported the file that way. 
+
+![image](https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/da20dba3-4314-4410-877a-d9a713f8a0e7)
+
+Now, ansible can successfully connect to the Jenkins-master
+
+![image](https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/2b9b3b74-1699-4933-bdd1-54c988e6d55b)
+
+I also added the slave to the hosts file 
+
+![image](https://github.com/mfkimbell/end-to-end-DevOps-2/assets/107063397/c2dd8431-6d89-49bc-9bc3-617c0aff36e6)
+
+
+
 
