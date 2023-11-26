@@ -24,37 +24,36 @@ import twitter4j.conf.ConfigurationBuilder;
 @RestController
 public class RepositoryDetailsController {
 
-
-
-
-    @Autowired
-    private Environment env;
+	@Autowired
+	private Environment env;
 
 	@RequestMapping("/")
 	public String getRepos() throws IOException {
 		GitHub github = new GitHubBuilder().withPassword("valaxytech@gmail.com", "XXXXXXXX").build();
 		GHRepositorySearchBuilder builder = github.searchRepositories();
-		return "Greetings from Valaxy Technologies";
+		return "Greetings from Mfkimbell";
 	}
 
 	@GetMapping("/trends")
-	public Map<String, String> getTwitterTrends(@RequestParam("placeid") String trendPlace, @RequestParam("count") String trendCount) {
+	public Map<String, String> getTwitterTrends(@RequestParam("placeid") String trendPlace,
+			@RequestParam("count") String trendCount) {
 		String consumerKey = env.getProperty("CONSUMER_KEY");
 		String consumerSecret = env.getProperty("CONSUMER_SECRET");
 		String accessToken = env.getProperty("ACCESS_TOKEN");
 		String accessTokenSecret = env.getProperty("ACCESS_TOKEN_SECRET");
-		System.out.println("consumerKey "+consumerKey+" consumerSecret "+consumerSecret+" accessToken "+accessToken+" accessTokenSecret "+accessTokenSecret);		
+		System.out.println("consumerKey " + consumerKey + " consumerSecret " + consumerSecret + " accessToken "
+				+ accessToken + " accessTokenSecret " + accessTokenSecret);
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-		        .setOAuthConsumerKey(consumerKey)
+				.setOAuthConsumerKey(consumerKey)
 				.setOAuthConsumerSecret(consumerSecret)
 				.setOAuthAccessToken(accessToken)
 				.setOAuthAccessTokenSecret(accessTokenSecret);
 		TwitterFactory tf = new TwitterFactory(cb.build());
-		System.out.println("Twitter Factory "+tf);
+		System.out.println("Twitter Factory " + tf);
 		System.out.println("Code testing purpose ");
 		Twitter twitter = tf.getInstance();
-		System.out.println("Twitter object "+twitter);
+		System.out.println("Twitter object " + twitter);
 		Map<String, String> trendDetails = new HashMap<String, String>();
 		try {
 			Trends trends = twitter.getPlaceTrends(Integer.parseInt(trendPlace));
@@ -68,12 +67,12 @@ public class RepositoryDetailsController {
 			}
 		} catch (TwitterException e) {
 			trendDetails.put("test", "MyTweet");
-            //trendDetails.put("Twitter Exception", e.getMessage());
-			System.out.println("Twitter exception "+e.getMessage());
+			// trendDetails.put("Twitter Exception", e.getMessage());
+			System.out.println("Twitter exception " + e.getMessage());
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			trendDetails.put("test", "MyTweet");
-            System.out.println("Exception "+e.getMessage());
+			System.out.println("Exception " + e.getMessage());
 		}
 		return trendDetails;
 	}
