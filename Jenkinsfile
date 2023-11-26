@@ -24,7 +24,7 @@ environment
         }
 		stage('SonarQube analysis') 
 		{
-			enviornment 
+			environment 
 			{
 				scannerHome = tool 'mfkimbell-sonar-scanner';
 			}
