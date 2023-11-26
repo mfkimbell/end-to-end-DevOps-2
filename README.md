@@ -1,5 +1,7 @@
 # terraform-aws-DevOps-pipeline
 
+<img width="1742" alt="workflowdevops2" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/e6c8f8b7-b3c1-46d2-9219-5664d7214807">
+
 
 ### **Tools Used:**
 * `AWS` Hosting of all CI/CD resources and permissions to those resources
