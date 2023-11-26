@@ -190,6 +190,23 @@ Now after a commit, we can see the webhook automatically triggers which will run
 
 <img width="621" alt="Screenshot 2023-11-25 at 2 38 29 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/47524eb0-ee96-4ac2-8bd8-9c876a8f777e">
 
+Now we load up SonarQube and create a security token, and add that token to Jenkins.
+
+<img width="1145" alt="Screenshot 2023-11-25 at 6 41 02 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/38fe7428-961e-4c53-9483-c51411195acf">
+
+Then, we add SonarQube server to Jenkins. 
+
+<img width="725" alt="Screenshot 2023-11-25 at 6 44 02 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/06ca91c4-2511-4fe6-9033-a9d2ca8d034c">
+
+<img width="725" alt="Screenshot 2023-11-25 at 6 45 52 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/7e4ef679-4357-4751-81d5-d713b93dbebf">
+
+I create an "organization" on sonarcloud.io, add a project key, and then add a sonar properties file to my repo:
+
+<img width="576" alt="Screenshot 2023-11-25 at 6 58 49 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/0f3599bf-e6f9-44be-8094-54fbe29e1ea5">
+
+Then we add a stage to the Jenkinsfile for SonarQube analysis:
+
+<img width="530" alt="Screenshot 2023-11-25 at 7 09 56 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/4a69639f-6fa1-4af8-b1cf-2c4b033055d4">
 
 
 
