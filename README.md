@@ -7,6 +7,8 @@
 * `Maven` Managing dependencies and compiling Java code
 * `Jenkins` Build and monitor automation of the application deployment process
 * `Ansible` Scripts for uploading new Docker Images and Kubernetes pulling of Images
+* `SonarQube` Automatic analysis of code for bugs and bad design
+* `JFrog Artifactory` Manage and automatate artifacts
 * `Docker` Containerize the application and server
 * `Kubernetes` Docker container management and fault tolerance with load balancer
 * `EKS` AWS management of Kubernetes
@@ -207,6 +209,53 @@ I create an "organization" on sonarcloud.io, add a project key, and then add a s
 Then we add a stage to the Jenkinsfile for SonarQube analysis:
 
 <img width="530" alt="Screenshot 2023-11-25 at 7 09 56 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/4a69639f-6fa1-4af8-b1cf-2c4b033055d4">
+
+Now we are able to get stats about the quality of our code from SonarQube like bugs, code-smell, and others. You can add quality gates for things thigns like code-duplication or bugs, to fail the builds if thresholds are passed. I built one for 50+ bugs in the code (however sonar considers a LOT of things "bugs"), then added a "Quality Gate" stage to the Jenkins file:
+
+<img width="799" alt="Screenshot 2023-11-25 at 9 06 49 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/511eb693-5ee7-4def-8fa8-8b804fd79670">
+
+Now I would like to use Jfrog Artifactory to publish a Docker Image of my application. First, we create an access token on Jfrog and add it to Jenkins credentials. Also need to install the `Artifactory` plugin on Jenkins. 
+
+<img width="873" alt="Screenshot 2023-11-25 at 10 01 05 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/a3a0449a-0b41-4999-8db0-ab45b0f2e39a">
+
+Now, we add a stage to our Jenkinsfile to capture the `.jar` file created by our project and store it on Jfrog Artifactory. 
+
+<img width="834" alt="Screenshot 2023-11-25 at 10 07 26 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/44d4958b-784c-4f13-ad7b-26d7c8b6c394">
+
+**RoadBlock**
+If at first you don't succeed... I ended up having a couple typos that made this frustating to figure out. 
+
+<img width="441" alt="Screenshot 2023-11-25 at 10 19 06 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/f633b637-c34a-46ee-bcd3-f048a80989a6">
+
+Here we can see the files successfully uploaded to JFrog:
+
+<img width="1103" alt="Screenshot 2023-11-25 at 10 21 56 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/7e8186cc-767d-4087-ac96-a9bc4117caa7">
+
+However, we want to deploy this as a microservice, so this needs to be deployed on Docker. So first, we need to install docker on our jenkins slave by updating the ansible playbook `jenkins-slave-setup.yaml`
+
+<img width="507" alt="Screenshot 2023-11-25 at 10 32 34 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/792e54b4-5a0b-4666-b224-e85b64afe00d">
+
+And it succeeded! (after some syntax changes not shown)
+
+<img width="566" alt="Screenshot 2023-11-25 at 10 51 59 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/0028f53d-fd63-4e72-8611-4450d5620dc4">
+
+We create a dockefile to host the jar execution:
+
+<img width="662" alt="Screenshot 2023-11-25 at 11 02 50 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/cbe455bc-ca55-435b-a547-582649d9cc9d">
+
+Here we can see our dockerfile in our slave after committing:
+
+<img width="574" alt="Screenshot 2023-11-25 at 11 06 09 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/6536026a-7bf0-4796-a278-ed393fe4934a">
+
+I create a docker repository on JFrog:
+
+<img width="791" alt="Screenshot 2023-11-25 at 11 13 58 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/482b954a-5205-4ebc-b620-395c550cec70">
+
+I install `docker pipeline` on Jenkins, then I add `Docker Build` and `Docker Publish` stages to the Jenkinsfile:
+
+<img width="514" alt="Screenshot 2023-11-25 at 11 23 37 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/a5bef739-6fbb-4215-bbfd-b5fe62f7da71">
+
+<img width="654" alt="Screenshot 2023-11-25 at 11 24 33 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/eb3adb69-a4a5-4dd1-b6d7-6001fbfbff45">
 
 
 
