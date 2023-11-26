@@ -9,9 +9,7 @@ pipeline
     }
 environment 
 {
-        SONAR_SCANNER_HOME = tool 'mfkimbell-sonar-scanner'
-        JAVA_HOME = tool 'maven3.9.2' // Replace 'your-java-tool-name' with the name of the Java tool in Jenkins
-        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    PATH = "/opt/apache-maven-3.9.5/bin:$PATH"
 }
     stages 
 	{
@@ -24,21 +22,21 @@ environment
                  echo "----------- build complted ----------"
             }
         }
-		stage('SonarQube analysis') 
-		{
-			environment 
-			{
-				scannerHome = tool 'mfkimbell-sonar-scanner';
-			}
-			steps
-			{
-				withSonarQubeEnv('mfkimbell-sonarqube-server') 
-				{ 
-					sh "${scannerHome}/bin/sonar-scanner"	
-				}
+		// stage('SonarQube analysis') 
+		// {
+		// 	environment 
+		// 	{
+		// 		scannerHome = tool 'mfkimbell-sonar-scanner';
+		// 	}
+		// 	steps
+		// 	{
+		// 		withSonarQubeEnv('mfkimbell-sonarqube-server') 
+		// 		{ 
+		// 			sh "${scannerHome}/bin/sonar-scanner"	
+		// 		}
 			
-            }
-        }
+        //     }
+        // }
     }
 
 }
