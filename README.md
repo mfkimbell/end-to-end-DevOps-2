@@ -16,7 +16,8 @@
 * `kubectl` Command line management of Kubernetes clusters
 
 
-### Purpose
+### Purpose:
+The purpose of this project was to learn about using Terraform in a CICD pipeline, along with implementation of SonarQube for analysis. Compared to the last CICD pipeline I worked on, I appreciated how easy terraform made it to build and destroy all of the resources, this is especially helpful for working with AWS where resources can be expensive if you leave them running. This project uses 
 
 
 Jenkins Jobs running:
