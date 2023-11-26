@@ -9,7 +9,9 @@ pipeline
     }
 environment 
 {
-    PATH = "/opt/apache-maven-3.9.5/bin:$PATH"
+        SONAR_SCANNER_HOME = tool 'mfkimbell-sonar-scanner'
+        JAVA_HOME = tool 'maven3.9.2' // Replace 'your-java-tool-name' with the name of the Java tool in Jenkins
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
 }
     stages 
 	{
