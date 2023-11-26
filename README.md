@@ -338,3 +338,9 @@ After the commit we can see our job rerunning:
 And again we see our applicatin up and running via Kubernetes pods:
 
 <img width="469" alt="Screenshot 2023-11-26 at 12 32 46 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/8d2a138c-3335-4564-97c9-465684a4a0a7">
+
+You live and you learn.... Don't leave EKS running...
+
+<img width="819" alt="Screenshot 2023-11-26 at 12 49 27 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/1b41e3b6-9d3a-4065-8cc8-0d4c7108ccb7">
+
+
