@@ -257,7 +257,48 @@ I install `docker pipeline` on Jenkins, then I add `Docker Build` and `Docker Pu
 
 <img width="654" alt="Screenshot 2023-11-25 at 11 24 33 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/eb3adb69-a4a5-4dd1-b6d7-6001fbfbff45">
 
+We have been blessed with no failures:
 
+<img width="501" alt="Screenshot 2023-11-25 at 11 33 59 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/f8cfaa93-9fce-436c-abbc-071d2ba4d6d7">
 
+<img width="737" alt="Screenshot 2023-11-25 at 11 35 07 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/4da48d0e-8373-418e-9193-8defe39ad154">
+
+<img width="929" alt="Screenshot 2023-11-25 at 11 36 02 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/ebcbce80-6790-4b58-bb82-30a9425c6f67">
+
+We can manually start the container now:
+
+<img width="876" alt="Screenshot 2023-11-25 at 11 38 57 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/951c481a-7dc5-4899-acd4-8d663075a40e">
+
+Now, after we open port 8000 on Jenkins-Slave, we can access the application:
+
+<img width="506" alt="Screenshot 2023-11-25 at 11 43 23 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/ba9f801e-cf6f-432f-9833-a1fa56242950">
+
+I renamed the original terraform file, since now we are going to have terraform files for eks/kubernetes as well as security group management:
+
+<img width="260" alt="Screenshot 2023-11-26 at 12 10 26 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/d57cf65e-2823-4f26-ba9a-106e7b76f799">
+
+I will not show these files in their entirety since they are long, however, we allocate the necessary resources for eks, policies for eks to access what it needs to, an iam role for ec2 eks worker, an autoscaling policy, and various resource policies for s3, daemon (for tracking), and other things. We have an output file for out endpoint, and we have a variable file to keep track of ids like security group, subnet, and vpc ids.
+
+To our original vpc terraform file, we add lines to execute our other terraform files:
+
+<img width="717" alt="Screenshot 2023-11-26 at 12 34 51 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/bcbc9344-7fcc-4c2c-98d6-05b35d428884">
+
+<img width="454" alt="Screenshot 2023-11-26 at 12 30 07 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/ae5b6881-acbf-432d-8004-633250abcc9b">
+
+We can see my EKS cluster has been created upon running the terraform file:
+
+<img width="845" alt="Screenshot 2023-11-26 at 12 23 51 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/3677f373-14d8-4913-a3b5-2fc5547a0c88">
+
+We can also see all of our EC2 instances running:
+
+<img width="599" alt="Screenshot 2023-11-26 at 12 32 20 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/0b7f3773-d9c5-4337-bdfe-f88dddc2f208">
+
+Now, we setup the aws cli on the build slave:
+
+<img width="278" alt="Screenshot 2023-11-26 at 12 48 41 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/8e772ad5-68fc-4794-945e-080e394bc8a3">
+
+We get the kubernetes credentials and now we can use `kubectl` commands:
+
+<img width="573" alt="Screenshot 2023-11-26 at 12 49 55 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/ed02643c-46f2-4a22-a55f-4976f2e4a083">
 
 
