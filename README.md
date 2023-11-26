@@ -19,6 +19,18 @@
 ### Purpose
 
 
+Jenkins Jobs running:
+
+<img width="909" alt="Screenshot 2023-11-26 at 12 07 45 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/d647c535-45e0-40d0-b662-ffa837ff6e47">
+
+Jenkins multi-pipeline job for branches:
+
+<img width="759" alt="Screenshot 2023-11-26 at 12 37 13 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/2a46e17a-d885-4f69-bcb2-a6ec72ec670b">
+
+Aws instances for jenkins, build slave, ansible, and EKS:
+
+<img width="1024" alt="Screenshot 2023-11-26 at 12 16 03 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/32169397-a55d-48aa-8e83-8d497d67b598">
+
 ## Documentation from start to end:
 
 **As I will be deleting all of these AWS resources to prevent charges on my account, I have documented thoroughly this entire process.**
@@ -301,4 +313,28 @@ We get the kubernetes credentials and now we can use `kubectl` commands:
 
 <img width="573" alt="Screenshot 2023-11-26 at 12 49 55 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/ed02643c-46f2-4a22-a55f-4976f2e4a083">
 
+Now we can add kubernetes manifest files to our project. Files that 1. create a namespace, 2. establish secret credentials with Jfrog, 3. deploy the pods, and 4. create a service to define this execution. 
 
+<img width="262" alt="Screenshot 2023-11-26 at 11 32 28 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/89451da2-9904-4811-8a5f-2e873eaddf0e">
+
+We do a test run on the build slave:
+
+<img width="387" alt="Screenshot 2023-11-26 at 11 50 07 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/728b07e8-dd4b-4c64-8952-2c0c3f8ce41d">
+
+<img width="569" alt="Screenshot 2023-11-26 at 11 53 13 AM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/d983131d-f35a-4925-a5c3-ebd8671c8641">
+
+We can see its in "ImagePullBackOff" since it's failing to pull the JFrog image. I make a user called `dockercred` on JFrog, and then I use `docker login https://mfkimbell.jfrog.io` to login to my user on the build slave. We setup the `deply.sh` to run, and after running the `service.yaml` and open up port 3082 on the EKS containers, we can see our appliation running:
+
+<img width="544" alt="Screenshot 2023-11-26 at 12 19 33 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/4bcdc2bb-dc60-496c-93d6-33ff048b8b62">
+
+Now, we go to our Jenkinsfile and add a stage to automatically execute `deploy.sh`, which executes the kubernetes manifest files:
+
+<img width="371" alt="Screenshot 2023-11-26 at 12 29 21 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/5ebee7d2-15cf-4c5d-baed-2d9870dbd85d">
+
+After the commit we can see our job rerunning:
+
+<img width="876" alt="Screenshot 2023-11-26 at 12 31 49 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/cc65dc73-a902-4a77-b7f9-a42c54656e25">
+
+And again we see our applicatin up and running via Kubernetes pods:
+
+<img width="469" alt="Screenshot 2023-11-26 at 12 32 46 PM" src="https://github.com/mfkimbell/terraform-aws-DevOps-pipeline/assets/107063397/8d2a138c-3335-4564-97c9-465684a4a0a7">
