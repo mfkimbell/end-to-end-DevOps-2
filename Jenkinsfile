@@ -34,39 +34,39 @@ environment
             }
         }
 
-		// stage('SonarQube analysis') 
-		// {
-		// 	environment 
-		// 	{
-		// 		scannerHome = tool 'mfkimbell-sonar-scanner';
-		// 	}
-		// 	steps
-		// 	{
-		// 		withSonarQubeEnv('mfkimbell-sonarqube-server') 
-		// 		{ 
-		// 			sh "${scannerHome}/bin/sonar-scanner"	
-		// 		}
+		stage('SonarQube analysis') 
+		{
+			environment 
+			{
+				scannerHome = tool 'mfkimbell-sonar-scanner';
+			}
+			steps
+			{
+				withSonarQubeEnv('mfkimbell-sonarqube-server') 
+				{ 
+					sh "${scannerHome}/bin/sonar-scanner"	
+				}
 			
-        //     }
-        // }
+            }
+        }
 
-		// stage("Quality Gate")
-		// {
-		// 	steps 
-		// 	{
-		// 		script 
-		// 		{
-		// 			timeout(time: 1, unit: 'HOURS') 
-		// 			{ // Just in case something goes wrong, pipeline will be killed after a timeout
-		// 				def qg = waitForQualityGate() 
-		// 				if (qg.status != 'OK') 
-		// 				{
-		// 					error "Pipeline aborted due to quality gate failure: ${qg.status}"
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
+		stage("Quality Gate")
+		{
+			steps 
+			{
+				script 
+				{
+					timeout(time: 1, unit: 'HOURS') 
+					{ // Just in case something goes wrong, pipeline will be killed after a timeout
+						def qg = waitForQualityGate() 
+						if (qg.status != 'OK') 
+						{
+							error "Pipeline aborted due to quality gate failure: ${qg.status}"
+						}
+					}
+				}
+			}
+		}
 
 
 	
@@ -127,6 +127,19 @@ environment
 				}
 			}
 		}
+		stage ("Deploy")
+		{
+			steps
+			{
+				script
+				{
+					sh './deploy.sh'
+				}
+
+			}
+
+		}
+
 	}
 }
 
