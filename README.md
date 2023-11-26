@@ -6,9 +6,9 @@
 * `EC2` Manage instances that run various servers for the application architecture
 * `Maven` Managing dependencies and compiling Java code
 * `Jenkins` Build and monitor automation of the application deployment process
-* `Ansible` Scripts for uploading new Docker Images and Kubernetes pulling of Images
+* `Ansible` Scripts for establishing jenkins masters and slave servers
 * `SonarQube` Automatic analysis of code for bugs and bad design
-* `JFrog Artifactory` Manage and automatate artifacts
+* `JFrog Artifactory` Manage build artifacts and store Docker containers
 * `Docker` Containerize the application and server
 * `Kubernetes` Docker container management and fault tolerance with load balancer
 * `EKS` AWS management of Kubernetes
