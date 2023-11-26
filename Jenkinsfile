@@ -30,21 +30,22 @@ environment
             }
         }
 
-		stage('SonarQube analysis') 
-		{
-			environment 
-			{
-				scannerHome = tool 'mfkimbell-sonar-scanner';
-			}
-			steps
-			{
-				withSonarQubeEnv('mfkimbell-sonarqube-server') 
-				{ 
-					sh "${scannerHome}/bin/sonar-scanner"	
-				}
+		// stage('SonarQube analysis') 
+		// {
+		// 	environment 
+		// 	{
+		// 		scannerHome = tool 'mfkimbell-sonar-scanner';
+		// 	}
+		// 	steps
+		// 	{
+		// 		withSonarQubeEnv('mfkimbell-sonarqube-server') 
+		// 		{ 
+		// 			sh "${scannerHome}/bin/sonar-scanner"	
+		// 		}
 			
-            }
-        }
+        //     }
+        // }
+
 		// stage("Quality Gate")
 		// {
 		// 	steps 
@@ -62,4 +63,6 @@ environment
 		// 		}
 		// 	}
 		// }
+
+		
 }
