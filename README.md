@@ -1,6 +1,7 @@
 # terraform-aws-DevOps-pipeline
 
-![Uploading workflow devops 2.png…]()
+<img width="1742" alt="workflow devops 2" src="https://github.com/mfkimbell/terraform-aws-DevOps/assets/107063397/3f8a0010-8d51-4373-9f5a-e0880de4d365">
+
 
 
 ### **Tools Used:**
